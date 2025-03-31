@@ -8,6 +8,8 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "TBL_USERS")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "user_type")
 @Getter
 @Setter
 @AllArgsConstructor

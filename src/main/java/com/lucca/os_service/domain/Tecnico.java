@@ -2,6 +2,7 @@ package com.lucca.os_service.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lucca.os_service.DTOs.TecnicoDTO;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -14,7 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "TBL_TECNICOS")
+//@Table(name = "TBL_TECNICOS")
+@DiscriminatorValue("TECNICO")
 @Getter
 @Setter
 @AllArgsConstructor

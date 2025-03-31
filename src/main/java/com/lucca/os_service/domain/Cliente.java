@@ -1,5 +1,6 @@
 package com.lucca.os_service.domain;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -12,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "TBL_CLIENTES")
+//@Table(name = "TBL_CLIENTES")
+@DiscriminatorValue("CLIENTE")
 @Getter
 @Setter
 @AllArgsConstructor
