@@ -19,6 +19,8 @@ public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+    private String login;
+    private String passWord;
     private String name;
     private String cpf;
     private String telefone;
