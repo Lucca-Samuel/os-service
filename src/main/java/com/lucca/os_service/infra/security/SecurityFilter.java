@@ -1,8 +1,8 @@
 package com.lucca.os_service.infra.security;
 
 
-import com.lucca.os_service.domain.Tecnico;
-import com.lucca.os_service.repositorys.TecnicoRepository;
+import com.lucca.os_service.domain.User;
+import com.lucca.os_service.repositorys.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,7 +22,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Autowired
     TokenService tokenService;
     @Autowired
-    TecnicoRepository userRepository;
+    UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -30,7 +30,7 @@ public class SecurityFilter extends OncePerRequestFilter {
         var login = tokenService.validateToken(token);
 
         if(login != null){
-            Tecnico user = userRepository.findByLogin(login).orElseThrow(() -> new RuntimeException("User Not Found"));
+            User user = userRepository.findByLogin(login).orElseThrow(() -> new RuntimeException("User Not Found"));
             var authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
             var authentication = new UsernamePasswordAuthenticationToken(user, null, authorities);
             SecurityContextHolder.getContext().setAuthentication(authentication);

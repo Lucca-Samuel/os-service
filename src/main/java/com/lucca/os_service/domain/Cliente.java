@@ -1,5 +1,7 @@
 package com.lucca.os_service.domain;
 
+import com.lucca.os_service.DTOs.UserRequestRegister;
+import com.lucca.os_service.enums.UserType;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -23,4 +25,15 @@ public class Cliente extends User{
 
     @OneToMany(mappedBy = "cliente")
     private List<OS> list = new ArrayList<>();
+
+    public Cliente(UserRequestRegister data) {
+        this.setName(data.nome());
+        this.setCpf(data.cpf());
+        this.setTelefone(data.telefone());
+    }
+
+    @Override
+    public UserType getUserType() {
+        return UserType.CLIENTE;
+    }
 }

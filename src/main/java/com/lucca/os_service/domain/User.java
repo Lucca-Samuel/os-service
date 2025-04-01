@@ -1,5 +1,6 @@
 package com.lucca.os_service.domain;
 
+import com.lucca.os_service.enums.UserType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,4 +25,7 @@ public abstract class User {
     private String name;
     private String cpf;
     private String telefone;
+
+    @Transient
+    public abstract UserType getUserType();
 }
