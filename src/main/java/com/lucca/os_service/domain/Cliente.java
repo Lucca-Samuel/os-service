@@ -30,6 +30,8 @@ public class Cliente extends User{
         this.setName(data.nome());
         this.setCpf(data.cpf());
         this.setTelefone(data.telefone());
+        this.setLogin(data.login());
+        this.setPassWord(data.passWord());
     }
 
     @Override

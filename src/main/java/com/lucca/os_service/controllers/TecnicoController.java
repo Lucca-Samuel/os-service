@@ -18,11 +18,12 @@ public class TecnicoController {
     @Autowired
     private TecnicoServices tecnicoServices;
 
+    /**
     @PostMapping
     public ResponseEntity<Tecnico> salvarTecnico(@RequestBody TecnicoDTO tecnicoDTO){
         Tecnico newTecnico = tecnicoServices.createTecnico(tecnicoDTO);
         return new ResponseEntity<>(newTecnico, HttpStatus.CREATED);
-    }
+    }**/
 
     @GetMapping
     public ResponseEntity<List<Tecnico>> getAllTecnicos(){

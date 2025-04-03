@@ -16,34 +16,31 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
-    private UserRepository repository;
+    private final UserRepository repository;
 
     private UserType userType;
 
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {
+        this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public List<User> getAllUsers(){
         return this.repository.findAll();
     }
 
     public User createUser(UserRequestRegister data){
-        /**
-        User user = null;
-        if (data.userType() == UserType.TECNICO){
-            user = new Tecnico(data);
-        }else if(data.userType() == UserType.CLIENTE){
-            user = new Cliente(data);
-        }else {
-            throw new IllegalArgumentException("Tipo de usuário inválido: " + data.userType());
-        }
-        this.saveUser(user);
-        return user;**/
-
         User user = switch (data.userType()) {
             case TECNICO -> new Tecnico(data);
             case CLIENTE -> new Cliente(data);
             default -> throw new IllegalArgumentException("Tipo inválido");
         };
+
+        //Para depuração
+        //System.out.println("Usuário cadastrado: " + user.getLogin());
 
         user.setPassWord(passwordEncoder.encode(data.passWord()));
         this.saveUser(user);

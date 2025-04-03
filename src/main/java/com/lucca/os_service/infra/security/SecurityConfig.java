@@ -28,7 +28,7 @@ public class SecurityConfig {
     @Autowired
     SecurityFilter securityFilter;
 
-    /**@Bean
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
@@ -36,12 +36,19 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.HEAD, "/h2-console").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
-    }**/
-    @Bean
+    }
+
+
+    /**
+     * Ignore, apneas para testes
+     * libera todas as rotas sem nescessitar autenticaçãos
+     */
+    /**@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
@@ -54,13 +61,10 @@ public class SecurityConfig {
                 }))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
+                        .anyRequest().permitAll() // 🔥 LIBERA TUDO TEMPORARIAMENTE
+                );
         return http.build();
-    }
+    }**/
 
     @Bean
     public PasswordEncoder passwordEncoder() {
