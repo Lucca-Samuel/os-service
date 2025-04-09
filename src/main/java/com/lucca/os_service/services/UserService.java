@@ -1,6 +1,5 @@
 package com.lucca.os_service.services;
 
-import com.lucca.os_service.DTOs.TecnicoDTO;
 import com.lucca.os_service.DTOs.UserRequestRegister;
 import com.lucca.os_service.domain.Cliente;
 import com.lucca.os_service.domain.Tecnico;

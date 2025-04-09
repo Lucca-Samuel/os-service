@@ -1,12 +1,10 @@
 package com.lucca.os_service.controllers;
 
-import com.lucca.os_service.DTOs.TecnicoDTO;
 import com.lucca.os_service.domain.Tecnico;
 import com.lucca.os_service.services.TecnicoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

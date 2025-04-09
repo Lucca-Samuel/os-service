@@ -1,13 +1,11 @@
 package com.lucca.os_service.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lucca.os_service.DTOs.TecnicoDTO;
 import com.lucca.os_service.DTOs.UserRequestRegister;
 import com.lucca.os_service.enums.UserType;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,11 +28,6 @@ public class Tecnico extends User{
     private List<OS> list = new ArrayList<>();
 
 
-    public Tecnico(TecnicoDTO data){
-        this.setName(data.nome());
-        this.setCpf(data.cpf());
-        this.setTelefone(data.telefone());
-    }
 
     public Tecnico(UserRequestRegister data) {
         this.setName(data.nome());
